@@ -2,7 +2,7 @@ const sumAll = function(...num) {
     let start;
     let stop;
 
-    // check if value are numbers
+    // check if values are numbers
     if(Number.isInteger(num[0]) === false || Number.isInteger(num[1]) === false ) {
         return "ERROR";
     }
