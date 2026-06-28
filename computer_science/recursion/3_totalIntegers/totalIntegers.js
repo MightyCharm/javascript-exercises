@@ -24,7 +24,7 @@ const totalIntegers = function (data, count = 0, isInitialCall = true) {
     return count;
   }
 
-  return false;
+  return 0;
 };
 
 // Do not edit below this line
