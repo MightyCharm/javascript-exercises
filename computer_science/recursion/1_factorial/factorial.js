@@ -1,5 +1,5 @@
 const factorial = function (num) {
-  if (num < 0 || !Number.isInteger(num)) return;
+  if (num < 0 || !Number.isInteger(num)) return undefined;
   if (num <= 0) return 1;
   return num * factorial(num - 1);
 };
