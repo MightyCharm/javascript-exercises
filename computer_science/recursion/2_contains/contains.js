@@ -1,15 +1,15 @@
 const contains = function (data, target_value) {
-  if (Number.isNaN(data) && Number.isNaN(target_value)) {
+  if (
+    data === target_value ||
+    (Number.isNaN(data) && Number.isNaN(target_value))
+  ) {
     return true;
   }
-
-  if (data === target_value) {
-    return true;
-  }
-
   if (typeof data === "object" && data !== null) {
-    for (const value of Object.values(data)) {
-      if (contains(value, target_value)) {
+    const values = Object.values(data);
+    for (const value of values) {
+      const result = contains(value, target_value);
+      if (result) {
         return true;
       }
     }
