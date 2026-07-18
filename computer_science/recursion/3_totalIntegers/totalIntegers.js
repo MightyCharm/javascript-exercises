@@ -1,30 +1,37 @@
-const totalIntegers = function (data, count = 0, isInitialCall = true) {
-  if (isInitialCall) {
-    if (typeof data !== "object" || (data === null && !Array.isArray(data))) {
-      return undefined;
-    }
+const totalIntegers = function (data) {
+  if (typeof data !== "object" && !Array.isArray(data)) {
+    return undefined;
   }
 
-  if (Number.isInteger(data)) {
-    count += 1;
-    return count;
-  }
-
+  let count = 0;
   if (Array.isArray(data)) {
-    for (const element of data) {
-      count += totalIntegers(element, 0, false);
+    for (const item of data) {
+      if (Number.isInteger(item)) {
+        count += 1;
+      } else {
+        const result = totalIntegers(item);
+        if (result) {
+          count += result;
+        }
+      }
     }
-    return count;
   }
 
-  if (typeof data === "object" && data !== null) {
-    for (const element of Object.values(data)) {
-      count += totalIntegers(element, 0, false);
+  if (typeof data === "object" && !Array.isArray(data) && data !== null) {
+    const values = Object.values(data);
+    for (const value of values) {
+      if (Number.isInteger(value)) {
+        count += 1;
+      } else {
+        const result = totalIntegers(value);
+        if (result) {
+          count += result;
+        }
+      }
     }
-    return count;
   }
 
-  return 0;
+  return count;
 };
 
 // Do not edit below this line
