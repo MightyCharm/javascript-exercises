@@ -1,23 +1,15 @@
 const permutations = function (data) {
-  if (data.length <= 1) {
-    return [data];
-  }
-  const results = [];
-  for (let i = 0; i <= data.length - 1; i++) {
+  if (data.length <= 1) return [data];
+  const result = [];
+  for (let i = 0; i < data.length; i++) {
     const current = data[i];
-    const remaining = [];
-    for (let j = 0; j <= data.length - 1; j++) {
-      const number = data[j];
-      if (number !== current) {
-        remaining.push(number);
-      }
-    }
-    const sub_permutations = permutations(remaining);
-    for (const item of sub_permutations) {
-      results.push([current, ...item]);
+    const remaining = [...data.slice(0, i), ...data.slice(i + 1)];
+    const subPermutations = permutations(remaining);
+    for (const sub of subPermutations) {
+      result.push([current, ...sub]);
     }
   }
-  return results;
+  return result;
 };
 
 // Do not edit below this line
